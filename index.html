@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Baldosas piezoeléctricas · INTECO</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap">
+<style>
+:root{--bg:#eef1ee;--ink:#15212c;--mut:#516070;--line:#c5cfd3;--acc:#9a6400;--panel:#ffffff;--btn:#e2e8e6;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a121b;--ink:#e8eef3;--mut:#9fb0bf;--line:#26384a;--acc:#f2b632;--panel:#101c29;--btn:#16273a}}
+:root[data-theme="dark"]{--bg:#0a121b;--ink:#e8eef3;--mut:#9fb0bf;--line:#26384a;--acc:#f2b632;--panel:#101c29;--btn:#16273a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55}
+main{max-width:1000px;margin:0 auto;padding:28px 18px 56px}
+h1{font-size:clamp(1.9rem,5vw,3.1rem);line-height:1.05;margin:0 0 10px;font-weight:800;letter-spacing:-.02em}
+.sub{color:var(--mut);margin:0 0 26px;max-width:60ch}
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;margin-bottom:28px}
+.trio div{padding:4px 18px 4px 14px;border-left:3px solid var(--line)}
+.trio div:nth-child(1){border-color:#e05a47}.trio div:nth-child(2){border-color:#f2b632}.trio div:nth-child(3){border-color:#2dd4bf}
+.trio h2{margin:0 0 4px;font-size:1rem}
+.trio p{margin:0;color:var(--mut);font-size:.95rem}
+.scene{background:#0d1a26;border-radius:14px;padding:10px 10px 14px;position:relative}
+svg{width:100%;height:auto;display:block}
+svg text{font-family:inherit}
+.stepbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:6px 10px 0}
+#pisar{font:inherit;font-weight:800;font-size:1.05rem;background:#f2b632;color:#1a1300;border:0;border-radius:999px;padding:12px 26px;cursor:pointer}
+#pisar:active{transform:translateY(2px)}
+.hint{color:#9fb0bf;font-size:.9rem}
+button:focus-visible,.part:focus-visible{outline:3px solid #2dd4bf;outline-offset:3px}
+.part{cursor:pointer;outline:none}
+.part:focus-visible .hl{opacity:1}
+.hl{fill:none;stroke:#f2b632;stroke-width:2;stroke-dasharray:6 5;opacity:0;transition:opacity .2s}
+.part.on .hl{opacity:1}
+.badge circle{fill:#f2b632}.badge text{fill:#1a1300;font-size:12px;font-weight:800;text-anchor:middle}
+.wire{fill:none;stroke:#2dd4bf;stroke-width:3;opacity:.3;stroke-linecap:round;stroke-linejoin:round}
+.wire.live{opacity:1;stroke-dasharray:8 8;animation:flow .5s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-16}}
+#foot{transition:transform .22s ease-in}#foot.down{transform:translateY(54px)}
+#plate{transition:transform .22s ease-in}#plate.down{transform:translateY(8px)}
+.disc{fill:#f2b632;transition:fill .15s}.disc.flash{fill:#fff6c9}
+#cone{fill:#ffe27a;opacity:0;transition:opacity .4s}#bulb{fill:#3a4452;transition:fill .3s}
+.lit #cone{opacity:.22}.lit #bulb{fill:#ffe27a}
+.info{display:grid;grid-template-columns:minmax(210px,300px) 1fr;gap:22px;margin-top:22px;align-items:start}
+.nav{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.nav button{width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--btn);border:2px solid transparent;border-radius:10px;padding:10px 12px;cursor:pointer;display:flex;gap:10px;align-items:center}
+.nav button b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--line);font-size:.8rem;flex:none}
+.nav button[aria-pressed="true"]{border-color:var(--acc);font-weight:600}
+.nav button[aria-pressed="true"] b{background:var(--acc);color:#fff}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;min-height:200px}
+.panel .tag{color:var(--acc);font-weight:600;font-size:.9rem;margin:0 0 4px}
+.panel h3{margin:0 0 10px;font-size:1.6rem;line-height:1.15}
+.panel p{margin:0 0 10px;max-width:62ch}
+.panel .try{color:var(--mut);font-size:.92rem}
+@media (max-width:720px){.info{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<h1>Baldosas piezoeléctricas para el INTECO</h1>
+<p class="sub">Cada paso por el pasillo es energía que hoy se pierde. Acá la aprovechamos. Pisa la maqueta y toca cada parte para ver cómo funciona.</p>
+
+<section class="trio">
+  <div><h2>Problema</h2><p>Se desperdicia la energía mecánica que producen los estudiantes al caminar por pasillos concurridos del INTECO.</p></div>
+  <div><h2>Solución</h2><p>Baldosas piezoeléctricas en las zonas de mayor tráfico del liceo.</p></div>
+  <div><h2>Resultado</h2><p>Pasillos oscuros iluminados con LED y una pantalla que muestra el impacto ambiental a toda la comunidad.</p></div>
+</section>
+
+<section class="scene" aria-label="Maqueta de la baldosa piezoeléctrica">
+<svg viewBox="0 0 900 430" role="group" aria-label="Corte de una baldosa piezoeléctrica conectada a batería, luz LED y pantalla">
+  <rect x="0" y="250" width="900" height="180" fill="#08111b"/>
+  <line x1="0" y1="250" x2="900" y2="250" stroke="#3a526b" stroke-width="2"/>
+  <g id="sceneLit">
+    <polygon id="cone" points="615,116 665,116 730,250 550,250"/>
+  </g>
+
+  <!-- cables -->
+  <path class="wire" id="w1" d="M140 308 V334 H340"/>
+  <path class="wire" id="w2" d="M430 334 H480"/>
+  <path class="wire" id="w3" d="M535 304 V150 H640 V84"/>
+  <path class="wire" id="w4" d="M590 334 H670 V165 H740"/>
+
+  <!-- 3 módulo -->
+  <rect x="60" y="272" width="240" height="92" rx="4" fill="#1c2e40" stroke="#3a526b" stroke-width="2"/>
+  <g class="part" data-id="modulo" tabindex="0" role="button" aria-label="Módulo piezoeléctrico">
+    <rect class="disc" id="d1" x="105" y="296" width="70" height="12" rx="3"/>
+    <rect class="disc" id="d2" x="185" y="296" width="70" height="12" rx="3"/>
+    <rect class="hl" x="98" y="288" width="164" height="28" rx="6"/>
+    <g class="badge"><circle cx="272" cy="330" r="11"/><text x="272" y="334">3</text></g>
+  </g>
+
+  <!-- 2 baldosa -->
+  <g class="part" data-id="baldosa" tabindex="0" role="button" aria-label="Baldosa superior">
+    <g id="plate">
+      <rect x="60" y="250" width="240" height="22" rx="4" fill="#aeb9c4"/>
+      <path d="M100 250v22M140 250v22M180 250v22M220 250v22M260 250v22" stroke="#8795a3" stroke-width="1.5"/>
+    </g>
+    <rect class="hl" x="54" y="244" width="252" height="34" rx="6"/>
+    <g class="badge"><circle cx="318" cy="261" r="11"/><text x="318" y="265">2</text></g>
+  </g>
+
+  <!-- 1 pisada -->
+  <g class="part" data-id="pisada" tabindex="0" role="button" aria-label="La pisada">
+    <g id="foot">
+      <rect x="146" y="86" width="40" height="56" rx="6" fill="#8aa0b5"/>
+      <path d="M130 196V150Q130 140 142 140H190Q215 152 232 174Q240 184 240 196Z" fill="#3b82c4"/>
+      <rect x="124" y="194" width="122" height="10" rx="5" fill="#e5e9ee"/>
+    </g>
+    <rect class="hl" x="112" y="80" width="150" height="130" rx="8"/>
+    <g class="badge"><circle cx="262" cy="130" r="11"/><text x="262" y="134">1</text></g>
+  </g>
+
+  <!-- 4 circuito -->
+  <g class="part" data-id="circuito" tabindex="0" role="button" aria-label="Circuito rectificador">
+    <rect x="340" y="310" width="90" height="48" rx="5" fill="#223548" stroke="#4a6a88" stroke-width="2"/>
+    <path d="M352 334h14l6-10 8 20 8-20 6 10h14" fill="none" stroke="#9fb0bf" stroke-width="2" stroke-linejoin="round"/>
+    <rect class="hl" x="334" y="304" width="102" height="60" rx="7"/>
+    <g class="badge"><circle cx="440" cy="310" r="11"/><text x="440" y="314">4</text></g>
+  </g>
+
+  <!-- 5 batería -->
+  <g class="part" data-id="bateria" tabindex="0" role="button" aria-label="Batería">
+    <rect x="480" y="304" width="110" height="60" rx="6" fill="#223548" stroke="#4a6a88" stroke-width="2"/>
+    <rect x="590" y="320" width="8" height="28" rx="2" fill="#4a6a88"/>
+    <rect id="charge" x="487" y="311" width="0" height="46" rx="3" fill="#2dd4bf"/>
+    <text id="pct" x="535" y="384" fill="#9fb0bf" font-size="13" text-anchor="middle">carga 0%</text>
+    <rect class="hl" x="474" y="298" width="130" height="72" rx="8"/>
+    <g class="badge"><circle cx="486" cy="304" r="11"/><text x="486" y="308">5</text></g>
+  </g>
+
+  <!-- 6 LED -->
+  <g class="part" data-id="led" tabindex="0" role="button" aria-label="Luz LED">
+    <line x1="570" y1="40" x2="710" y2="40" stroke="#4a6a88" stroke-width="4"/>
+    <rect x="620" y="40" width="40" height="38" rx="4" fill="#223548" stroke="#4a6a88" stroke-width="2"/>
+    <circle id="bulb" cx="640" cy="98" r="20" stroke="#4a6a88" stroke-width="2"/>
+    <rect class="hl" x="606" y="34" width="68" height="90" rx="8"/>
+    <g class="badge"><circle cx="680" cy="98" r="11"/><text x="680" y="102">6</text></g>
+  </g>
+
+  <!-- 7 pantalla -->
+  <g class="part" data-id="pantalla" tabindex="0" role="button" aria-label="Pantalla de impacto ambiental">
+    <rect x="740" y="100" width="140" height="130" rx="8" fill="#0b2b2a" stroke="#4a6a88" stroke-width="3"/>
+    <text x="810" y="128" fill="#8de8dc" font-size="12" text-anchor="middle">Pasos aprovechados</text>
+    <text id="steps" x="810" y="170" fill="#ffffff" font-size="38" font-weight="800" text-anchor="middle">0</text>
+    <text x="810" y="196" fill="#8de8dc" font-size="11" text-anchor="middle">Energía limpia</text>
+    <text x="810" y="212" fill="#8de8dc" font-size="11" text-anchor="middle">para el liceo</text>
+    <rect class="hl" x="734" y="94" width="152" height="142" rx="10"/>
+    <g class="badge"><circle cx="740" cy="100" r="11"/><text x="740" y="104">7</text></g>
+  </g>
+
+  <text x="18" y="400" fill="#6f8397" font-size="13">Bajo el piso</text>
+</svg>
+<div class="stepbar">
+  <button id="pisar" type="button">Pisar la baldosa</button>
+  <span class="hint">Cada pisada carga la batería. Si dejas de caminar, las luces se apagan.</span>
+</div>
+</section>
+
+<section class="info">
+  <ol class="nav" id="nav"></ol>
+  <article class="panel" id="panel" aria-live="polite"></article>
+</section>
+</main>
+
+<script>
+const P=[
+{id:"pisada",n:1,t:"La pisada",tag:"Entrada de energía",
+ p:["Cada paso empuja la baldosa hacia abajo. Esa fuerza es energía mecánica, y hoy se pierde por completo en el piso.","En los pasillos más concurridos del INTECO pasan muchísimos estudiantes cada día. Todos esos pasos podrían servir para algo."],
+ try:"Toca «Pisar la baldosa» y mira cómo baja el pie."},
+{id:"baldosa",n:2,t:"La baldosa",tag:"Recibe y reparte la fuerza",
+ p:["Es la capa resistente que se pisa. Recibe el peso de la persona y lo reparte hacia los módulos que van debajo.","Se instalaría en las zonas de mayor tráfico del liceo: entradas, escaleras y pasillos principales. Se hunde solo unos milímetros, así que caminar se siente normal."],
+ try:"Fíjate cómo baja un poquito cuando pisas."},
+{id:"modulo",n:3,t:"Módulo piezoeléctrico",tag:"Transformación de energía",
+ p:["Es el corazón del sistema. Contiene materiales piezoeléctricos (cerámicas o cristales) que generan un pequeño voltaje cuando se aprietan o se deforman.","Al pisar, el módulo se comprime y transforma la energía mecánica en energía eléctrica."],
+ try:"Los discos amarillos brillan en el momento de la pisada."},
+{id:"circuito",n:4,t:"Circuito de conversión",tag:"Ordena la electricidad",
+ p:["La pisada produce pulsos eléctricos cortos y cambiantes. El circuito los ordena y los convierte en corriente continua, que sí se puede guardar.","También cuida que la batería no se sobrecargue."],
+ try:"Sigue el cable punteado: la energía viaja hacia la batería."},
+{id:"bateria",n:5,t:"Batería",tag:"Almacenamiento",
+ p:["Guarda la energía de muchas pisadas. Cada paso aporta poquito, pero se va acumulando.","Así las luces y la pantalla pueden funcionar incluso cuando el pasillo está vacío un rato."],
+ try:"Pisa varias veces y mira cómo sube la barra de carga."},
+{id:"led",n:6,t:"Luces LED",tag:"Resultado: pasillos iluminados",
+ p:["Los LED gastan muy poca energía, por eso son ideales para este sistema. Iluminan los pasillos oscuros del liceo con la energía que generaron los propios estudiantes.","Mientras más gente camina, más luz hay."],
+ try:"Con la batería cargada, la luz se enciende y alumbra el piso."},
+{id:"pantalla",n:7,t:"Pantalla de impacto",tag:"Resultado: conciencia ambiental",
+ p:["Muestra cuántos pasos se han aprovechado y cuánta energía limpia se generó, para que toda la comunidad vea el impacto de forma directa.","La idea es que cada estudiante se dé cuenta de que sus acciones cotidianas pueden ayudar al medio ambiente."],
+ try:"El contador sube con cada pisada que haces en la maqueta."}
+];
+const $=s=>document.querySelector(s), nav=$("#nav"), panel=$("#panel");
+P.forEach(x=>{
+  const li=document.createElement("li");
+  li.innerHTML='<button type="button" aria-pressed="false" data-id="'+x.id+'"><b>'+x.n+'</b>'+x.t+'</button>';
+  nav.appendChild(li);
+});
+function select(id){
+  const x=P.find(o=>o.id===id);
+  document.querySelectorAll(".nav button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.id===id));
+  document.querySelectorAll(".part").forEach(g=>g.classList.toggle("on",g.dataset.id===id));
+  panel.innerHTML='<p class="tag">'+x.tag+'</p><h3>'+x.t+'</h3>'+x.p.map(s=>'<p>'+s+'</p>').join("")+'<p class="try">'+x.try+'</p>';
+}
+nav.addEventListener("click",e=>{const b=e.target.closest("button");if(b)select(b.dataset.id)});
+document.querySelectorAll(".part").forEach(g=>{
+  g.addEventListener("click",()=>select(g.dataset.id));
+  g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(g.dataset.id)}});
+});
+
+let steps=0,charge=0,busy=false;
+const wires=["#w1","#w2","#w3","#w4"].map($), discs=["#d1","#d2"].map($);
+function render(){
+  $("#charge").setAttribute("width",Math.round(96*charge/100));
+  $("#pct").textContent="carga "+Math.round(charge)+"%";
+  $("#steps").textContent=steps;
+  $(".scene").classList.toggle("lit",charge>6);
+}
+function pisar(){
+  if(busy)return; busy=true;
+  $("#foot").classList.add("down");$("#plate").classList.add("down");
+  setTimeout(()=>{
+    discs.forEach(d=>d.classList.add("flash"));
+    wires.forEach(w=>w.classList.add("live"));
+    steps++;charge=Math.min(100,charge+14);render();
+  },220);
+  setTimeout(()=>{$("#foot").classList.remove("down");$("#plate").classList.remove("down");discs.forEach(d=>d.classList.remove("flash"))},420);
+  setTimeout(()=>{wires.forEach(w=>w.classList.remove("live"));busy=false},1100);
+}
+$("#pisar").addEventListener("click",pisar);
+setInterval(()=>{if(charge>0){charge=Math.max(0,charge-3);render()}},1000);
+select("pisada");render();
+</script>
+</body>
+</html>
